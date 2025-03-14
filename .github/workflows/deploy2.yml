@@ -23,12 +23,12 @@ jobs:
       - name: Deploy Code to EC2
         run: |
           rsync -avz --delete -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
-          ./ ubuntu@${{ secrets.EC2_HOST }}:/var/www/app/
+          ./ ubuntu@${{ secrets.EC2_HOST }}:/var/www/html/
 
       - name: Restart Application on EC2
         run: |
           ssh -i ~/.ssh/id_rsa ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
-            cd /var/www/app
+            cd /var/www/html
            # docker-compose down
            # docker-compose up -d --build
           EOF
