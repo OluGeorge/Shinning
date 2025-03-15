@@ -23,7 +23,7 @@ jobs:
       - name: Deploy Code to EC2
         run: |
           rsync -avz --delete -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
-          ./ ubuntu@${{ secrets.EC2_HOST }}:/var/www/html/
+          ./ ubuntu@${{ secrets.EC2_HOST }}:/home/ubuntu/app/Shinning
 
       - name: Restart Application on EC2
         run: |
